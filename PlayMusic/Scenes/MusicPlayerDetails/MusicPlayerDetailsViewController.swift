@@ -9,6 +9,9 @@ import UIKit
 
 class MusicPlayerDetailsViewController: UIViewController {
     
+    // MARK: - Properties
+    private let viewModel = MusicPlayerDetailsViewModel()
+    
     private let mainStackView = UIStackView()
     private let heartProgressView = HeartProgressView()
     private let songImageStackView = UIStackView()
@@ -26,22 +29,21 @@ class MusicPlayerDetailsViewController: UIViewController {
     private let forwardImage = UIImageView()
     private let repeatImage = UIImageView()
     private let circularProgressView = CircularProgressView()
-    private var isPlaying = false
-    private var playbackStartTime: TimeInterval?
-    private var playbackTimer: Timer?
-    private var totalDuration: TimeInterval = 0
-    private var pausedTime: TimeInterval?
     private var songImageWidthConstraint = NSLayoutConstraint()
     private var songImageHeightConstraint = NSLayoutConstraint()
     
-    
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(hex: "#161411")
         setup()
-        totalDuration = 195
+        
+        viewModel.playbackProgressChanged = { [weak self] progress in
+            self?.updatePlaybackProgress(progress)
+        }
     }
     
+    // MARK: - Setup
     private func setup() {
         setupMainStackView()
         setupHeartProgressView()
@@ -60,8 +62,6 @@ class MusicPlayerDetailsViewController: UIViewController {
         setupPlayButton()
         setupForwardImage()
         setupRepeatImage()
-        
-        
         setupCustomSpacing()
     }
     
@@ -84,8 +84,6 @@ class MusicPlayerDetailsViewController: UIViewController {
         
         mainStackView.isLayoutMarginsRelativeArrangement = true
         mainStackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        
-        
     }
     
     private func setupHeartProgressView() {
@@ -168,7 +166,6 @@ class MusicPlayerDetailsViewController: UIViewController {
         durationLabel.textColor = .white
         durationLabel.font = .systemFont(ofSize: 14)
         songDurationStackView.addArrangedSubview(durationLabel)
-        
     }
     
     private func setupComponentsStackView() {
@@ -179,7 +176,6 @@ class MusicPlayerDetailsViewController: UIViewController {
         componentsStackView.isLayoutMarginsRelativeArrangement = true
         componentsStackView.layoutMargins.top = 34
         componentsStackView.spacing = 40
-        
     }
     
     private func setupShuffleImage() {
@@ -188,7 +184,6 @@ class MusicPlayerDetailsViewController: UIViewController {
         shuffleImage.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
         componentsStackView.addArrangedSubview(shuffleImage)
-        
     }
     
     private func setupBackImage() {
@@ -197,7 +192,6 @@ class MusicPlayerDetailsViewController: UIViewController {
         backImage.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
         componentsStackView.addArrangedSubview(backImage)
-        
     }
     
     private func setupPlayButton() {
@@ -208,20 +202,17 @@ class MusicPlayerDetailsViewController: UIViewController {
         playButton.clipsToBounds = true
         
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-        
         componentsStackView.addArrangedSubview(playButton)
-        
         updatePlayButtonAppearance()
     }
     
     private func updatePlayButtonAppearance() {
-        let iconImage = isPlaying ? UIImage(systemName: "pause.fill") : UIImage(systemName: "play.fill")
+        let iconImage = viewModel.isPlaying ? UIImage(systemName: "pause.fill") : UIImage(systemName: "play.fill")
         let iconImageView = UIImageView(image: iconImage)
         iconImageView.tintColor = .white
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         
         playButton.backgroundColor = .blue
-        
         playButton.subviews.forEach { $0.removeFromSuperview() }
         playButton.addSubview(iconImageView)
         
@@ -234,15 +225,10 @@ class MusicPlayerDetailsViewController: UIViewController {
     }
     
     @objc private func playButtonTapped() {
-        isPlaying.toggle()
+        viewModel.togglePlay()
+        updatePlayButtonAppearance()
         
-        if isPlaying {
-            if let pausedTime = pausedTime {
-                playbackStartTime = Date().timeIntervalSince1970 - pausedTime
-            } else {
-                playbackStartTime = Date().timeIntervalSince1970
-            }
-            
+        if viewModel.isPlaying {
             animateSongImageSize(to: CGSize(width: 200, height: 200))
             
             circularProgressView.isHidden = false
@@ -250,24 +236,10 @@ class MusicPlayerDetailsViewController: UIViewController {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.circularProgressView.isHidden = true
-                self.startProgressBarAnimation()
                 self.animateSongImageSize(to: CGSize(width: 304, height: 320))
             }
-            
-            startPlaybackTimer()
         } else {
-            pausedTime = Date().timeIntervalSince1970 - (playbackStartTime ?? 0)
-            stopPlaybackTimer()
             animateSongImageSize(to: CGSize(width: 200, height: 200))
-        }
-        
-        updatePlayButtonAppearance()
-    }
-    
-    private func startProgressBarAnimation() {
-        let duration = totalDuration - (pausedTime ?? 0)
-        UIView.animate(withDuration: duration) {
-            self.progressSlider.value = 1.0
         }
     }
     
@@ -288,25 +260,10 @@ class MusicPlayerDetailsViewController: UIViewController {
         circularProgressView.widthAnchor.constraint(equalToConstant: 56).isActive = true
     }
     
-    private func startPlaybackTimer() {
-        playbackTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-            self?.updatePlaybackProgress()
-        }
-    }
-    
-    private func stopPlaybackTimer() {
-        playbackTimer?.invalidate()
-        playbackTimer = nil
-    }
-    
-    private func updatePlaybackProgress() {
-        guard let startTime = playbackStartTime else { return }
-        
-        let currentTime = Date().timeIntervalSince1970 - startTime
-        progressSlider.value = Float(currentTime / totalDuration)
-        
-        let progressTimeText = formatTime(currentTime)
-        progressTimeLabel.text = progressTimeText
+    private func updatePlaybackProgress(_ progress: Float) {
+        progressSlider.value = progress
+        let currentTime = TimeInterval(progress) * viewModel.totalDuration
+        progressTimeLabel.text = viewModel.formatTime(currentTime)
     }
     
     private func formatTime(_ time: TimeInterval) -> String {
@@ -314,6 +271,7 @@ class MusicPlayerDetailsViewController: UIViewController {
         let seconds = Int(time) % 60
         return String(format: "%d:%02d", minutes, seconds)
     }
+    
     private func setupForwardImage() {
         forwardImage.image = UIImage(named: "forward")
         forwardImage.widthAnchor.constraint(equalToConstant: 24).isActive = true
@@ -328,11 +286,5 @@ class MusicPlayerDetailsViewController: UIViewController {
         repeatImage.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
         componentsStackView.addArrangedSubview(repeatImage)
-        
     }
-    
-}
-
-#Preview {
-    MusicPlayerDetailsViewController()
 }

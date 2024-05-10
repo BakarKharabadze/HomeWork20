@@ -15,6 +15,10 @@
 		FBB5292C2BEE338000E88F5C /* HeartProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB5292B2BEE338000E88F5C /* HeartProgressView.swift */; };
 		FBB5292E2BEE82D200E88F5C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB5292D2BEE82D200E88F5C /* CircularProgressView.swift */; };
 		FBB529302BEE8D4A00E88F5C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB5292F2BEE8D4A00E88F5C /* TabBarController.swift */; };
+		FBB529342BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529332BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift */; };
+		FBB529362BEEAAC000E88F5C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529352BEEAAC000E88F5C /* HomeViewController.swift */; };
+		FBB529382BEEB1E500E88F5C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529372BEEB1E500E88F5C /* ColorExtension.swift */; };
+		FBB5293A2BEEB31100E88F5C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529392BEEB31100E88F5C /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		FBB5292B2BEE338000E88F5C /* HeartProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartProgressView.swift; sourceTree = "<group>"; };
 		FBB5292D2BEE82D200E88F5C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		FBB5292F2BEE8D4A00E88F5C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		FBB529332BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerDetailsViewModel.swift; sourceTree = "<group>"; };
+		FBB529352BEEAAC000E88F5C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FBB529372BEEB1E500E88F5C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		FBB529392BEEB31100E88F5C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +68,93 @@
 		FBB529162BEDCF8B00E88F5C /* PlayMusic */ = {
 			isa = PBXGroup;
 			children = (
-				FBB529172BEDCF8B00E88F5C /* AppDelegate.swift */,
-				FBB529192BEDCF8B00E88F5C /* SceneDelegate.swift */,
-				FBB5291B2BEDCF8B00E88F5C /* MusicPlayerDetailsViewController.swift */,
-				FBB5292B2BEE338000E88F5C /* HeartProgressView.swift */,
-				FBB5292F2BEE8D4A00E88F5C /* TabBarController.swift */,
-				FBB5292D2BEE82D200E88F5C /* CircularProgressView.swift */,
-				FBB529202BEDCF8D00E88F5C /* Assets.xcassets */,
-				FBB529222BEDCF8D00E88F5C /* LaunchScreen.storyboard */,
+				FBB5293B2BEEB46300E88F5C /* App */,
+				FBB5293C2BEEB46E00E88F5C /* Scenes */,
+				FBB529422BEEB51700E88F5C /* ColorExtension */,
+				FBB529432BEEB52700E88F5C /* Resources */,
 				FBB529252BEDCF8D00E88F5C /* Info.plist */,
 			);
 			path = PlayMusic;
+			sourceTree = "<group>";
+		};
+		FBB5293B2BEEB46300E88F5C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FBB529172BEDCF8B00E88F5C /* AppDelegate.swift */,
+				FBB529192BEDCF8B00E88F5C /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FBB5293C2BEEB46E00E88F5C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				FBB5293D2BEEB47A00E88F5C /* MusicPlayerDetails */,
+				FBB529402BEEB4DF00E88F5C /* TabBar */,
+				FBB529412BEEB4F100E88F5C /* TabBarComponents */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		FBB5293D2BEEB47A00E88F5C /* MusicPlayerDetails */ = {
+			isa = PBXGroup;
+			children = (
+				FBB5293F2BEEB4C900E88F5C /* CircularProgress */,
+				FBB5293E2BEEB49100E88F5C /* HeartProgress */,
+				FBB5291B2BEDCF8B00E88F5C /* MusicPlayerDetailsViewController.swift */,
+				FBB529332BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift */,
+			);
+			path = MusicPlayerDetails;
+			sourceTree = "<group>";
+		};
+		FBB5293E2BEEB49100E88F5C /* HeartProgress */ = {
+			isa = PBXGroup;
+			children = (
+				FBB5292B2BEE338000E88F5C /* HeartProgressView.swift */,
+			);
+			path = HeartProgress;
+			sourceTree = "<group>";
+		};
+		FBB5293F2BEEB4C900E88F5C /* CircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				FBB5292D2BEE82D200E88F5C /* CircularProgressView.swift */,
+			);
+			path = CircularProgress;
+			sourceTree = "<group>";
+		};
+		FBB529402BEEB4DF00E88F5C /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FBB5292F2BEE8D4A00E88F5C /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		FBB529412BEEB4F100E88F5C /* TabBarComponents */ = {
+			isa = PBXGroup;
+			children = (
+				FBB529352BEEAAC000E88F5C /* HomeViewController.swift */,
+				FBB529392BEEB31100E88F5C /* HomeViewModel.swift */,
+			);
+			path = TabBarComponents;
+			sourceTree = "<group>";
+		};
+		FBB529422BEEB51700E88F5C /* ColorExtension */ = {
+			isa = PBXGroup;
+			children = (
+				FBB529372BEEB1E500E88F5C /* ColorExtension.swift */,
+			);
+			path = ColorExtension;
+			sourceTree = "<group>";
+		};
+		FBB529432BEEB52700E88F5C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FBB529202BEDCF8D00E88F5C /* Assets.xcassets */,
+				FBB529222BEDCF8D00E88F5C /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +230,13 @@
 				FBB5291C2BEDCF8B00E88F5C /* MusicPlayerDetailsViewController.swift in Sources */,
 				FBB529182BEDCF8B00E88F5C /* AppDelegate.swift in Sources */,
 				FBB5291A2BEDCF8B00E88F5C /* SceneDelegate.swift in Sources */,
+				FBB5293A2BEEB31100E88F5C /* HomeViewModel.swift in Sources */,
+				FBB529382BEEB1E500E88F5C /* ColorExtension.swift in Sources */,
+				FBB529362BEEAAC000E88F5C /* HomeViewController.swift in Sources */,
 				FBB529302BEE8D4A00E88F5C /* TabBarController.swift in Sources */,
 				FBB5292E2BEE82D200E88F5C /* CircularProgressView.swift in Sources */,
 				FBB5292C2BEE338000E88F5C /* HeartProgressView.swift in Sources */,
+				FBB529342BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +378,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlayMusic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -305,6 +394,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TBC.PlayMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -316,8 +406,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlayMusic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -331,6 +422,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TBC.PlayMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

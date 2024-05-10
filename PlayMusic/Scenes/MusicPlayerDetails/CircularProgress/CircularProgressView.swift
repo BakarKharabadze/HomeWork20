@@ -11,9 +11,11 @@ import QuartzCore
 
 final class CircularProgressView: UIView {
     
+    // MARK: - Properties
     private var progressLayer = CAShapeLayer()
     private var tracklayer = CAShapeLayer()
     
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureProgressViewToBeCircular()
@@ -35,7 +37,8 @@ final class CircularProgressView: UIView {
             tracklayer.strokeColor = setTrackColor.cgColor
         }
     }
-  
+    
+    // MARK: - Private Methods
     private var viewCGPath: CGPath? {
         let size = CGSize(width: 56, height: 56)
         let center = CGPoint(x: size.width / 2.0, y: size.height / 2.0)
@@ -45,7 +48,7 @@ final class CircularProgressView: UIView {
                             startAngle: CGFloat(-0.5 * Double.pi),
                             endAngle: CGFloat(1.5 * Double.pi), clockwise: true).cgPath
     }
-
+    
     private func configureProgressViewToBeCircular() {
         self.drawsView(using: tracklayer, startingPoint: 10.0, ending: 1.0)
         self.drawsView(using: progressLayer, startingPoint: 10.0, ending: 0.0)

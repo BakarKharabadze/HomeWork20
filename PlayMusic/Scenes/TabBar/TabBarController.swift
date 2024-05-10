@@ -34,7 +34,7 @@ class TabBarController: UITabBarController {
             customTabBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             customTabBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             customTabBarView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            customTabBarView.heightAnchor.constraint(equalToConstant: 60) // Adjust as needed
+            customTabBarView.heightAnchor.constraint(equalToConstant: 60)
         ])
         
         setupTabButtons()
@@ -81,13 +81,20 @@ class TabBarController: UITabBarController {
     }
     
     private func setupViewControllers() {
-        let homeViewController = UIViewController()
-        homeViewController.view.backgroundColor = .red
+        let homeViewController = HomeViewController()
         let musicViewController = MusicPlayerDetailsViewController()
-        let heartViewController = UIViewController()
-        heartViewController.view.backgroundColor = .green
+        let heartViewController = HomeViewController()
         
-        viewControllers = [homeViewController, musicViewController, heartViewController]
+        homeViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "house"), tag: 0)
+        musicViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "music.note"), tag: 1)
+        
+        heartViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "heart"), tag: 2)
+        
+        let homeNavigationController = UINavigationController(rootViewController: homeViewController)
+        let musicNavigationController = UINavigationController(rootViewController: musicViewController)
+        let heartNavigationViewController = UINavigationController(rootViewController: heartViewController)
+        
+        viewControllers = [homeNavigationController, musicNavigationController, heartNavigationViewController]
     }
 }
 
@@ -128,7 +135,6 @@ class TabBarContainerView: UIView {
     }
 }
 
-// Helper extension to scale UIImage to a specific size
 extension UIImage {
     func scaledToSize(size: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
@@ -140,23 +146,3 @@ extension UIImage {
 }
 
 
-// MARK: - UIColor Extension
-
-extension UIColor {
-    convenience init(hex: String, alpha: CGFloat = 1.0) {
-        var hexFormatted: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
-        
-        if hexFormatted.hasPrefix("#") {
-            hexFormatted = String(hexFormatted.dropFirst())
-        }
-        
-        var rgbValue: UInt64 = 0
-        Scanner(string: hexFormatted).scanHexInt64(&rgbValue)
-        
-        let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
-        let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0
-        let blue = CGFloat(rgbValue & 0x0000FF) / 255.0
-        
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
-    }
-}

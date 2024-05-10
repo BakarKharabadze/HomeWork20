@@ -8,11 +8,14 @@
 import UIKit
 
 final class HeartProgressView: UIView {
+    
+    // MARK: - Properties
     private var heartIcons = [UIImageView]()
     private let totalHearts = 5
     private let spacing: CGFloat = 12
     private let heartStackView = UIStackView()
     
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -23,6 +26,7 @@ final class HeartProgressView: UIView {
         setup()
     }
     
+    // MARK: - Private Methods
     private func setup() {
         setupHeartStackView()
         setupHearts()
@@ -51,6 +55,7 @@ final class HeartProgressView: UIView {
         }
     }
     
+    // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -59,6 +64,7 @@ final class HeartProgressView: UIView {
         }
     }
     
+    // MARK: - Touch Handling
     private func updateHearts(for touchLocation: CGPoint) {
         let heartWidth = (frame.width - (spacing * CGFloat(totalHearts - 1))) / CGFloat(totalHearts)
         let index = Int(touchLocation.x / (heartWidth + spacing))
