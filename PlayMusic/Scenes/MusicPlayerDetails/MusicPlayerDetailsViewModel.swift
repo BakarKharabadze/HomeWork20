@@ -7,14 +7,14 @@
 
 import Foundation
 
-class MusicPlayerDetailsViewModel {
+final class MusicPlayerDetailsViewModel {
     
     // MARK: - Properties
+    private var playbackStartTime: TimeInterval?
+    private var pausedTime: TimeInterval?
+    private var playbackTimer: Timer?
     var isPlaying = false
-    var playbackStartTime: TimeInterval?
     var totalDuration: TimeInterval = 195
-    var pausedTime: TimeInterval?
-    var playbackTimer: Timer?
     
     var playbackProgressChanged: ((Float) -> Void)?
     

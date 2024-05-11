@@ -7,10 +7,14 @@
 
 import Foundation
 
-class HomeViewModel {
-    var navigateToMusicPlayer: (() -> Void)?
-    
+protocol HomeViewModelDelegate: AnyObject {
+    func navigateToMusicPlayer()
+}
+
+final class HomeViewModel {
+    weak var delegate: HomeViewModelDelegate?
+
     func goToMusicPlayer() {
-        navigateToMusicPlayer?()
+        delegate?.navigateToMusicPlayer()
     }
 }

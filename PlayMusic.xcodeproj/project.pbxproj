@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB0637C42BEF6E78009025B6 /* TabBarControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0637C32BEF6E78009025B6 /* TabBarControllerView.swift */; };
+		FB0637C62BEF6F20009025B6 /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0637C52BEF6F20009025B6 /* Image+Extension.swift */; };
 		FBB529182BEDCF8B00E88F5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529172BEDCF8B00E88F5C /* AppDelegate.swift */; };
 		FBB5291A2BEDCF8B00E88F5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529192BEDCF8B00E88F5C /* SceneDelegate.swift */; };
 		FBB5291C2BEDCF8B00E88F5C /* MusicPlayerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB5291B2BEDCF8B00E88F5C /* MusicPlayerDetailsViewController.swift */; };
@@ -17,11 +19,13 @@
 		FBB529302BEE8D4A00E88F5C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB5292F2BEE8D4A00E88F5C /* TabBarController.swift */; };
 		FBB529342BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529332BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift */; };
 		FBB529362BEEAAC000E88F5C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529352BEEAAC000E88F5C /* HomeViewController.swift */; };
-		FBB529382BEEB1E500E88F5C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529372BEEB1E500E88F5C /* ColorExtension.swift */; };
+		FBB529382BEEB1E500E88F5C /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529372BEEB1E500E88F5C /* Color+Extension.swift */; };
 		FBB5293A2BEEB31100E88F5C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB529392BEEB31100E88F5C /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB0637C32BEF6E78009025B6 /* TabBarControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerView.swift; sourceTree = "<group>"; };
+		FB0637C52BEF6F20009025B6 /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		FBB529142BEDCF8B00E88F5C /* PlayMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB529172BEDCF8B00E88F5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBB529192BEDCF8B00E88F5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,7 +38,7 @@
 		FBB5292F2BEE8D4A00E88F5C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FBB529332BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerDetailsViewModel.swift; sourceTree = "<group>"; };
 		FBB529352BEEAAC000E88F5C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		FBB529372BEEB1E500E88F5C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		FBB529372BEEB1E500E88F5C /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		FBB529392BEEB31100E88F5C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +74,7 @@
 			children = (
 				FBB5293B2BEEB46300E88F5C /* App */,
 				FBB5293C2BEEB46E00E88F5C /* Scenes */,
-				FBB529422BEEB51700E88F5C /* ColorExtension */,
+				FBB529422BEEB51700E88F5C /* AdditionalExtension */,
 				FBB529432BEEB52700E88F5C /* Resources */,
 				FBB529252BEDCF8D00E88F5C /* Info.plist */,
 			);
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				FBB5292F2BEE8D4A00E88F5C /* TabBarController.swift */,
+				FB0637C32BEF6E78009025B6 /* TabBarControllerView.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -140,12 +145,13 @@
 			path = TabBarComponents;
 			sourceTree = "<group>";
 		};
-		FBB529422BEEB51700E88F5C /* ColorExtension */ = {
+		FBB529422BEEB51700E88F5C /* AdditionalExtension */ = {
 			isa = PBXGroup;
 			children = (
-				FBB529372BEEB1E500E88F5C /* ColorExtension.swift */,
+				FBB529372BEEB1E500E88F5C /* Color+Extension.swift */,
+				FB0637C52BEF6F20009025B6 /* Image+Extension.swift */,
 			);
-			path = ColorExtension;
+			path = AdditionalExtension;
 			sourceTree = "<group>";
 		};
 		FBB529432BEEB52700E88F5C /* Resources */ = {
@@ -231,12 +237,14 @@
 				FBB529182BEDCF8B00E88F5C /* AppDelegate.swift in Sources */,
 				FBB5291A2BEDCF8B00E88F5C /* SceneDelegate.swift in Sources */,
 				FBB5293A2BEEB31100E88F5C /* HomeViewModel.swift in Sources */,
-				FBB529382BEEB1E500E88F5C /* ColorExtension.swift in Sources */,
+				FBB529382BEEB1E500E88F5C /* Color+Extension.swift in Sources */,
 				FBB529362BEEAAC000E88F5C /* HomeViewController.swift in Sources */,
 				FBB529302BEE8D4A00E88F5C /* TabBarController.swift in Sources */,
+				FB0637C42BEF6E78009025B6 /* TabBarControllerView.swift in Sources */,
 				FBB5292E2BEE82D200E88F5C /* CircularProgressView.swift in Sources */,
 				FBB5292C2BEE338000E88F5C /* HeartProgressView.swift in Sources */,
 				FBB529342BEEA5D000E88F5C /* MusicPlayerDetailsViewModel.swift in Sources */,
+				FB0637C62BEF6F20009025B6 /* Image+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

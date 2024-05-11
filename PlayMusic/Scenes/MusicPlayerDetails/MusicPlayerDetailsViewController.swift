@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MusicPlayerDetailsViewController: UIViewController {
+final class MusicPlayerDetailsViewController: UIViewController {
     
     // MARK: - Properties
     private let viewModel = MusicPlayerDetailsViewModel()
@@ -35,7 +35,6 @@ class MusicPlayerDetailsViewController: UIViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hex: "#161411")
         setup()
         
         viewModel.playbackProgressChanged = { [weak self] progress in
@@ -45,6 +44,7 @@ class MusicPlayerDetailsViewController: UIViewController {
     
     // MARK: - Setup
     private func setup() {
+        setupView()
         setupMainStackView()
         setupHeartProgressView()
         setupSongImageStackView()
@@ -65,11 +65,16 @@ class MusicPlayerDetailsViewController: UIViewController {
         setupCustomSpacing()
     }
     
+    // MARK: - Private methods
     private func setupCustomSpacing() {
         mainStackView.setCustomSpacing(34, after: songImageStackView)
         mainStackView.setCustomSpacing(8, after: songNameLabel)
         mainStackView.setCustomSpacing(34, after: singersName)
         mainStackView.setCustomSpacing(1, after: progressSlider)
+    }
+    
+    private func setupView() {
+        view.backgroundColor = UIColor(hex: "#161411")
     }
     
     private func setupMainStackView() {

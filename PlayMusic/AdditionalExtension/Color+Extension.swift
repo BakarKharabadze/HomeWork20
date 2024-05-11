@@ -1,5 +1,5 @@
 //
-//  ColorExtension.swift
+//  Color+Extension.swift
 //  PlayMusic
 //
 //  Created by Bakar Kharabadze on 5/10/24.
